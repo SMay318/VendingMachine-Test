@@ -1,4 +1,5 @@
 import unittest
+from cans import Cola
 from coins import Dime, Nickel, Quarter
 from customer import Customer
 from wallet import Wallet
@@ -46,6 +47,16 @@ class TestAddCoinsToWallet(unittest.TestCase):
     def test_pass_in_empty_money_list(self):
         self.customer.add_coins_to_wallet([])
         self.assertEqual(len(self.customer.wallet.money), 88)
+
+class TestAddCanToBackpack(unittest.TestCase):
+    """Test for Customer's add_can_to_backpack length increases by 1 when customer adds can of cola."""
+    def setUp(self):
+        self.customer = Customer()
+
+    def test_add_can_to_backpack(self):
+        cola = Cola()
+        self.customer.add_can_to_backpack(cola)
+        self.assertEqual(len(self.customer.backpack.purchased_cans),1)
 
 if __name__ == '__main__':
     unittest.main()
