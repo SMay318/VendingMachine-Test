@@ -1,5 +1,7 @@
 import unittest
+from coins import Dime, Nickel, Quarter
 from customer import Customer
+from wallet import Wallet
 
 class TestGetWalletCoin(unittest.TestCase):
     """Tests for Customer's get_wallet_coin method"""
@@ -23,11 +25,27 @@ class TestGetWalletCoin(unittest.TestCase):
         self.assertEqual(returned_coin.value, .01)
     def test_invalid_coins(self):
         """Pass in invalid str, method should return a Failed Test"""
-        invalid_value = None
-        # message = "This is an invalid choice."
         returned_coin = self.customer.get_wallet_coin('"asdf"')
-        self.assertIsNone(returned_coin, invalid_value)
+        self.assertIsNone(returned_coin)
+
+# if __name__ == '__main__':
+#     unittest.main()
+
+class TestAddCoinsToWallet(unittest.TestCase):
+    """Tests for Customer's add_coins_to_wallet method"""
+    def setUp(self):
+        self.customer = Customer()
+       
+    def test_length_of_customers_money_list(self):
+        quarter = Quarter()
+        nickel = Nickel()
+        dime = Dime()
+        self.customer.add_coins_to_wallet([quarter,nickel,dime])
+        self.assertEqual(len(self.customer.wallet.money), 91)
+    
+    def test_pass_in_empty_money_list(self):
+        self.customer.add_coins_to_wallet([])
+        self.assertEqual(len(self.customer.wallet.money), 88)
 
 if __name__ == '__main__':
     unittest.main()
-    
