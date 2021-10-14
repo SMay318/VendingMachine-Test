@@ -1,4 +1,5 @@
 import unittest
+from cans import Cola, OrangeSoda, RootBeer
 from soda_machine import SodaMachine
 from coins import Penny
 from coins import Nickel
@@ -111,6 +112,22 @@ function, ensure the returned values is .41"""
         returned_value = self.soda_machine.calculate_coin_value(self.empty_list)
         self.assertEqual(returned_value, 0)
 
+class TestGetInventorySoda(unittest.TestCase):
+    def setUp(self):
+        self.soda_machine = SodaMachine()
+    def test_get_soda_cola_inventory(self):
+        cola = Cola()
+        returned_cans = self.soda_machine.get_inventory_soda('Cola')
+        self.assertTrue(returned_cans)
+    def test_get_soda_orange_inventory(self):
+        orange = OrangeSoda()
+        returned_cans = self.soda_machine.get_inventory_soda('Orange Soda')
+        self.assertTrue(returned_cans)
+    def test_get_soda_root_beer_inventory(self):
+        root_beer = RootBeer()
+        returned_cans = self.soda_machine.get_inventory_soda('Root Beer')
+        self.assertTrue(returned_cans)
+
+
 if __name__ == '__main__':
     unittest.main()
-
