@@ -90,7 +90,9 @@ class TestDetermineChangeValue(unittest.TestCase):
 class TestCalculateCoinValue(unittest.TestCase):
     def setUp(self):
         self.soda_machine = SodaMachine()
-    def test_calculate_coin_value(self):
+    def test_returned_value(self):
+        """Instantiate each of the 4 coin types and append them to a list. Pass the list into this
+function, ensure the returned values is .41"""
         self.list_of_coins = []
         quarter = Quarter()
         dime = Dime()
@@ -102,9 +104,12 @@ class TestCalculateCoinValue(unittest.TestCase):
         self.list_of_coins.append(penny)
         coins = self.soda_machine.calculate_coin_value(self.list_of_coins)
         self.assertEqual(coins, .41)
-        
-   
-       
+    
+    def test_return_empty_list(self):
+        """Pass in an empty list. Ensure the returned value is 0."""
+        self.empty_list = []
+        returned_value = self.soda_machine.calculate_coin_value(self.empty_list)
+        self.assertEqual(returned_value, 0)
 
 if __name__ == '__main__':
     unittest.main()
