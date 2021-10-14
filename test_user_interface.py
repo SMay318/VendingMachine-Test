@@ -3,6 +3,10 @@ import user_interface
 from cans import Cola
 from cans import OrangeSoda
 from cans import RootBeer
+from coins import Penny
+from coins import Nickel
+from coins import Dime
+from coins import Quarter
 
 class TestValidateMainMenue(unittest.TestCase):
     """Pass in each number 1-4, ensure the tuple of (True, number) is returned
@@ -58,6 +62,25 @@ b. Pass in an empty list. Ensure an empty list is returned."""
       self.empty_can_list = []
       cans = user_interface.get_unique_can_names(self.empty_can_list)
       self.assertEqual(len(cans), 0)
+class DisplayPaymentValue(unittest.TestCase):
+   def test_returned_payment_value(self):
+      """instantiate 4 coin types and append them to a list and ensure returned value is .41"""
+      self.list_of_coins = []
+      quarter = Quarter()
+      dime = Dime()
+      nickel = Nickel()
+      penny = Penny()
+      self.list_of_coins.append(quarter)
+      self.list_of_coins.append(dime)
+      self.list_of_coins.append(nickel)
+      self.list_of_coins.append(penny)
+      coins = user_interface.display_payment_value(self.list_of_coins)
+      self.assertEqual(coins, .41)
+   def test_empty_list_equals_zero(self):
+      """Pass in an empty list and ensure returned value is 0"""
+      self.empty_coins_list = []
+      coins = user_interface.display_payment_value(self.empty_coins_list)
+      self.assertEqual(coins, 0)
 
 
 if __name__ == '__main__':
