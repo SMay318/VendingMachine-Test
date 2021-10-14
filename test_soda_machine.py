@@ -1,4 +1,5 @@
 import unittest
+from unittest.case import TestCase
 from cans import Cola, OrangeSoda, RootBeer
 from soda_machine import SodaMachine
 from coins import Penny
@@ -117,22 +118,51 @@ class TestGetInventorySoda(unittest.TestCase):
     def setUp(self):
         self.soda_machine = SodaMachine()
     def test_get_soda_cola_inventory(self):
+        """Test cola is returned from get inventory soda"""
         cola = Cola()
         returned_cans = self.soda_machine.get_inventory_soda('Cola')
         self.assertTrue(returned_cans)
     def test_get_soda_orange_inventory(self):
+        """Test Orange Soda is returned from get inventory soda"""
         orange = OrangeSoda()
         returned_cans = self.soda_machine.get_inventory_soda('Orange Soda')
         self.assertTrue(returned_cans)
     def test_get_soda_root_beer_inventory(self):
+        """Test Root Beer is returned from get inventory soda"""
         root_beer = RootBeer()
         returned_cans = self.soda_machine.get_inventory_soda('Root Beer')
         self.assertTrue(returned_cans)
-    """Pass in “Mountain Dew” and ensure None is returned"""
     def test_mountain_dew_inventory(self):
+        """Pass in “Mountain Dew” and ensure None is returned"""
         returned_mt_dew = self.soda_machine.get_inventory_soda('Mountain Dew')
         self.assertIsNone(returned_mt_dew)
 
+class TestReturnInventory(unittest.TestCase):
+    """ Instantiate a can and pass it into the method. Test that the len of self.inventory is now 31"""
+    def setUp(self):
+        self.soda_machine = SodaMachine()
+    """Test that the length of the invetory is now 31 after adding a cola to the return_invetory method"""
+    def test_len_of_inventory(self):
+        cola = Cola()
+        self.soda_machine.return_inventory([cola])
+        self.assertEqual(len(self.soda_machine.inventory), 31)
+
+class TestDepostCoinsIntoRegister(unittest.TestCase):
+    """Instantiate each of the 4 coins and append them to a list. Pass the list into the function, ensure the len of self.register is 92"""
+    def setUp(self):
+        self.soda_machine = SodaMachine()
+    def test_deposit_coins_into_register(self):
+        self.list_of_coins = []
+        quarter = Quarter()
+        dime = Dime()
+        nickel = Nickel()
+        penny = Penny()
+        self.list_of_coins.append(quarter)
+        self.list_of_coins.append(dime)
+        self.list_of_coins.append(nickel)
+        self.list_of_coins.append(penny)
+        coins = self.soda_machine.deposit_coins_into_register(self.list_of_coins)
+        self.assertEqual(len(self.soda_machine.register), 92)
 
 if __name__ == '__main__':
     unittest.main()
