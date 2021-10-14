@@ -47,6 +47,28 @@ class TestGetCoinFromRegister(unittest.TestCase):
         invalid_string = self.soda_machine.get_coin_from_register("asdasdas")
         self.assertIsNone(invalid_string)
 
+"""Test that each type of coin will return True"""
+class TestRegisterHasCoin(unittest.TestCase):
+    def setUp(self) -> None:
+        self.soda_machine = SodaMachine()
+    def test_register_has_coin(self):
+        """Test that penny will return True"""
+        returned_penny = self.soda_machine.register_has_coin("Penny")
+        self.assertTrue(returned_penny)
+    def test_register_has_coin(self):
+        """Test that nickel will return True"""
+        returned_nickel = self.soda_machine.register_has_coin("Nickel")
+        self.assertTrue(returned_nickel)
+    def test_register_has_coin(self):
+        """Test that dime will return True"""
+        returned_dime = self.soda_machine.register_has_coin("Dime")
+        self.assertTrue(returned_dime)
+    def test_register_has_coin(self):
+        """Test that quarter will return True"""
+        returned_quarter = self.soda_machine.register_has_coin("Quarter")
+        self.assertTrue(returned_quarter)
+
+
 if __name__ == '__main__':
     unittest.main()
 
