@@ -73,7 +73,7 @@ class TestRegisterHasCoin(unittest.TestCase):
         self.assertFalse(not_valid_coin_name)
 
 class TestDetermineChangeValue(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.soda_machine = SodaMachine()
     def test_total_payment_higher(self):
         """Testing with the total payment being higher"""
@@ -88,15 +88,23 @@ class TestDetermineChangeValue(unittest.TestCase):
         self.assertEqual(equal_value, 0)
 
 class TestCalculateCoinValue(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         self.soda_machine = SodaMachine()
     def test_calculate_coin_value(self):
+        self.list_of_coins = []
         quarter = Quarter()
         dime = Dime()
         nickel = Nickel()
         penny = Penny()
-        list_coins = self.soda_machine.calculate_coin_value(['Quarter', 'Dime', 'Nickel', 'Penny'])
-        self.assertEqual(list_coins.value, .41)
+        self.list_of_coins.append(quarter)
+        self.list_of_coins.append(dime)
+        self.list_of_coins.append(nickel)
+        self.list_of_coins.append(penny)
+        coins = self.soda_machine.calculate_coin_value(self.list_of_coins)
+        self.assertEqual(coins, .41)
+        
+   
+       
 
 if __name__ == '__main__':
     unittest.main()
