@@ -82,7 +82,27 @@ class DisplayPaymentValue(unittest.TestCase):
       coins = user_interface.display_payment_value(self.empty_coins_list)
       self.assertEqual(coins, 0)
 
-
+class TestCoinSelection(unittest.TestCase):
+   """a. Pass in each int 1-5, ensure the appropriate tuple is returned."""
+   def test_validate_coin_selection_one(self):
+       one = user_interface.validate_coin_selection(1)
+       self.assertTrue(one)
+   def test_validate_coin_selection_two(self):
+       two = user_interface.validate_coin_selection(2)
+       self.assertTrue(two)
+   def test_validate_coin_selection_three(self):
+       three = user_interface.validate_coin_selection(3)
+       self.assertTrue(three)
+   def test_validate_coin_selection_four(self):
+       four = user_interface.validate_coin_selection(4)
+       self.assertTrue(four)
+   def test_validate_coin_selection_five(self):
+       five = user_interface.validate_coin_selection(5)
+       self.assertTrue(five)
+   def test_validate_coin_selection_nine(self):
+      nine = user_interface.validate_can_choice(False, 9)
+      self.assertTrue(nine)
+ 
 if __name__ == '__main__':
     unittest.main()
 
