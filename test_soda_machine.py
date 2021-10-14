@@ -113,6 +113,7 @@ function, ensure the returned values is .41"""
         self.assertEqual(returned_value, 0)
 
 class TestGetInventorySoda(unittest.TestCase):
+    """Pass in each of the 3 soda names, ensure the returned can has the same name"""
     def setUp(self):
         self.soda_machine = SodaMachine()
     def test_get_soda_cola_inventory(self):
@@ -127,6 +128,10 @@ class TestGetInventorySoda(unittest.TestCase):
         root_beer = RootBeer()
         returned_cans = self.soda_machine.get_inventory_soda('Root Beer')
         self.assertTrue(returned_cans)
+    """Pass in “Mountain Dew” and ensure None is returned"""
+    def test_mountain_dew_inventory(self):
+        returned_mt_dew = self.soda_machine.get_inventory_soda('Mountain Dew')
+        self.assertIsNone(returned_mt_dew)
 
 
 if __name__ == '__main__':
