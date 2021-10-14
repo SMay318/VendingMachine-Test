@@ -42,6 +42,10 @@ class TestGetCoinFromRegister(unittest.TestCase):
     def test_get_coin_quarter_from_register(self):
         returned_quarter = self.soda_machine.get_coin_from_register("Quarter")
         self.assertTrue(returned_quarter)
+    """Testing to see that passing in a string that is not a valid coin name will return none"""
+    def test_not_valid_string_from_register(self):
+        invalid_string = self.soda_machine.get_coin_from_register("asdasdas")
+        self.assertIsNone(invalid_string)
 
 if __name__ == '__main__':
     unittest.main()
