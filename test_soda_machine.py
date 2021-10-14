@@ -26,10 +26,14 @@ class TestGetCoinFromRegister(unittest.TestCase):
     """Test each type of coin can be returned from register"""
     def setUp(self):
         self.soda_machine = SodaMachine()
-
-    def test_get_coin_from_register(self):
+    """Testing to see if penny is returned from register"""
+    def test_get_coin_penny_from_register(self):
         returned_penny = self.soda_machine.get_coin_from_register("Penny")
         self.assertTrue(returned_penny)
+    """Testing to see if nickel is returned from register"""
+    def test_get_coin_nickel_from_register(self):
+        returned_nickel = self.soda_machine.get_coin_from_register("Nickel")
+        self.assertTrue(returned_nickel)
 
 if __name__ == '__main__':
     unittest.main()
