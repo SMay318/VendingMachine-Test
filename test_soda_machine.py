@@ -47,8 +47,8 @@ class TestGetCoinFromRegister(unittest.TestCase):
         invalid_string = self.soda_machine.get_coin_from_register("asdasdas")
         self.assertIsNone(invalid_string)
 
-"""Test that each type of coin will return True"""
 class TestRegisterHasCoin(unittest.TestCase):
+    """Test that each type of coin will return True"""
     def setUp(self) -> None:
         self.soda_machine = SodaMachine()
     def test_register_has_coin_penny(self):
@@ -72,7 +72,7 @@ class TestRegisterHasCoin(unittest.TestCase):
         not_valid_coin_name = self.soda_machine.register_has_coin("daasdd")
         self.assertFalse(not_valid_coin_name)
 
-class DetermineChangeValue(unittest.TestCase):
+class TestDetermineChangeValue(unittest.TestCase):
     def setUp(self) -> None:
         self.soda_machine = SodaMachine()
     def test_total_payment_higher(self):
@@ -87,6 +87,16 @@ class DetermineChangeValue(unittest.TestCase):
         equal_value = self.soda_machine.determine_change_value(.6,.6)
         self.assertEqual(equal_value, 0)
 
+class TestCalculateCoinValue(unittest.TestCase):
+    def setup(self):
+        self.soda_machine = SodaMachine()
+    def test_calculate_coin_value(self):
+        quarter = Quarter()
+        dime = Dime()
+        nickel = Nickel()
+        penny = Penny()
+        list_coins = self.soda_machine.calculate_coin_value(['Quarter', 'Dime', 'Nickel', 'Penny'])
+        self.assertEqual(list_coins.value, .41)
 
 if __name__ == '__main__':
     unittest.main()
