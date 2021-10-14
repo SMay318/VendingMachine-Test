@@ -34,6 +34,14 @@ class TestGetCoinFromRegister(unittest.TestCase):
     def test_get_coin_nickel_from_register(self):
         returned_nickel = self.soda_machine.get_coin_from_register("Nickel")
         self.assertTrue(returned_nickel)
+    """Testing to see if dime is returned from register"""
+    def test_get_coin_dime_from_register(self):
+        returned_dime = self.soda_machine.get_coin_from_register("Dime")
+        self.assertTrue(returned_dime)
+    """Testing to see if quarter is returned from register"""
+    def test_get_coin_quarter_from_register(self):
+        returned_quarter = self.soda_machine.get_coin_from_register("Quarter")
+        self.assertTrue(returned_quarter)
 
 if __name__ == '__main__':
     unittest.main()
