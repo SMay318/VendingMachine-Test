@@ -20,6 +20,17 @@ class TestValidateMainMenue(unittest.TestCase):
        seven = user_interface.validate_main_menu(7)
        self.assertTrue(seven)
 
+class TestTryParseInt(unittest.TestCase):
+
+      def test_try_parse_int_ten(self):
+         """Pass in 10 and ensure int value 10 is returned"""
+         ten = user_interface.try_parse_int(10)
+         self.assertEqual(ten, 10)
+      def test_try_parse_int_hello(self):
+         """Pass in hello and ensure 0 is returned"""
+         hello = user_interface.try_parse_int("hello")
+         self.assertEqual(hello, 0)
+
 if __name__ == '__main__':
     unittest.main()
 
